@@ -3,7 +3,7 @@ const createTestCafe = require('testcafe');
 const testControllerHolder = require('../support/testControllerHolder');
 const {AfterAll, setDefaultTimeout, Before, After, Status} = require('cucumber');
 const errorHandling = require('../support/errorHandling');
-const TIMEOUT = 20000;
+const TIMEOUT = 200000;
 
 let isTestCafeError = false;
 let attachScreenshotToReport = null;
@@ -30,7 +30,7 @@ function runTest(iteration, browser) {
                 .src('./test.js')
                 .screenshots('reports/screenshots/', true)
                 .browsers(browser)
-                .run()
+                .run({skipJsErrors: true})
                 .catch(function(error) {
                     console.error(error);
                 });
